@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>💘 Walentynka</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffe6f0, #ffd6e7);
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+}
+
+img {
+    width: 250px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #d63384;
+}
+
+button {
+    font-size: 20px;
+    padding: 15px 30px;
+    margin: 15px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+#yes {
+    background: #28a745;
+    color: white;
+}
+
+#no {
+    background: #dc3545;
+    color: white;
+    position: absolute;
+}
+</style>
+</head>
+
+<body>
+
+<!-- EKRAN 1 -->
+<div id="screen1" class="screen active">
+    <img src="https://i.imgur.com/1X6R8xK.png">
+    <h1>Czy zostaniesz moją walentynką? 💕</h1>
+
+    <button id="yes" onclick="yesClick()">TAK</button>
+    <button id="no" onmouseover="moveNo()">NIE</button>
+</div>
+
+<!-- EKRAN 2 -->
+<div id="screen2" class="screen">
+    <img src="https://i.imgur.com/Qp9Z1Zm.png">
+    <h1>Wiedziałem 🥰❤️</h1>
+    <p style="font-size:22px;">
+        Obiecuję dużo uśmiechów,<br>
+        głupich żartów i ciepłych przytulasów 💖
+    </p>
+</div>
+
+<script>
+let noCount = 0;
+
+function moveNo() {
+    const noBtn = document.getElementById("no");
+    const texts = ["NIE", "Jesteś pewna?", "Na pewno?", "Ostatnia szansa 😳"];
+
+    noBtn.innerText = texts[Math.min(noCount, texts.length - 1)];
+
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    noBtn.style.transform = `scale(${1 - noCount * 0.15})`;
+    noCount++;
+}
+
+function yesClick() {
+    document.getElementById("screen1").classList.remove("active");
+    document.getElementById("screen2").classList.add("active");
+}
+</script>
+
+</body>
+</html>
